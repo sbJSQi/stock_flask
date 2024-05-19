@@ -1,0 +1,308 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="themepresss">
+
+    <!-- Page Title -->
+    <title>项目演示</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.2.2/echarts.min.js"></script>
+
+    <!-- Icon fonts -->
+    <link href="static/assets/css/themify-icons.css" rel="stylesheet">
+    <link href="static/assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/assets/css/flaticon.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Plugins for this template -->
+    <link href="static/assets/css/animate.css" rel="stylesheet">
+    <link href="static/assets/css/owl.carousel.css" rel="stylesheet">
+    <link href="static/assets/css/owl.theme.css" rel="stylesheet">
+    <link href="static/assets/css/odometer-theme-default.css" rel="stylesheet">
+    <link href="static/assets/css/slick.css" rel="stylesheet">
+    <link href="static/assets/css/slick-theme.css" rel="stylesheet">
+    <link href="static/assets/css/owl.transitions.css" rel="stylesheet">
+    <link href="static/assets/css/jquery.fancybox.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="static/assets/css/style.css" rel="stylesheet">
+    <link href="static/assets/css/responsive.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- start page-wrapper -->
+    <div class="page-wrapper">
+
+        <!-- start preloader -->
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <!-- end preloader -->
+
+        <!-- Start header -->
+        <header id="header" class="site-header header-style-1 header-style-3">
+            <div class="topbar">
+                <div class="container">
+                    <div class="separator"></div>
+                    <div class="row">
+                        <div class="col col-sm-4">
+                            <div class="contact-info">
+                                <ul>
+                                    <li><i class="ti-mobile"></i> +86 137 7395 7201</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col col-sm-4">
+                            <div class="contact-info">
+                                <ul>
+                                    <li><i class="ti-email"></i>test@test.com</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col col-sm-4">
+                            <div class="contact-info">
+                                <ul>
+                                    <li><i class="ti-location-pin"></i>江苏，南京，南京交通职业技术学院（江宁区）</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end container -->
+            </div>
+            <!-- end topbar -->
+
+            <nav class="navigation navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+{#                        <h1>中国股票市场主要指数数据处理与分析</h1>#}
+                        <a class="navbar-brand" href="/index"><span>股票数据处理与分析</span></a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-right navigation-holder">
+                        <ul class="nav navbar-nav">
+                            <li><a href="/index">主页</a></li>
+                            <li><a href="/kline">走势图</a></li>
+                            <li><a href="/deal_data">成交额</a></li>
+                            <li><a href="/team">分析</a></li>
+                        </ul>
+                    </div><!-- end of nav-collapse -->
+                    <!-- end side menu -->
+                </div><!-- end of container -->
+            </nav>
+        </header>
+
+        <div id="mainA" style="height: 400px;"></div>
+        <div id="mainB" style="height: 400px;"></div>
+        <div id="mainC" style="height: 400px;"></div>
+        <div id="mainD" style="height: 400px;"></div>
+        <div id="mainE" style="height: 400px;"></div>
+        <div id="mainF" style="height: 400px;"></div>
+
+            <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+            var myChartA = echarts.init(document.getElementById('mainA'));
+            var myChartB = echarts.init(document.getElementById('mainB'));
+            var myChartC = echarts.init(document.getElementById('mainC'));
+            var myChartD = echarts.init(document.getElementById('mainD'));
+            var myChartE = echarts.init(document.getElementById('mainE'));
+            var myChartF = echarts.init(document.getElementById('mainF'));
+
+    
+            // 生成股票指数数据
+            function generateRandomData(count) {
+                var data = [];
+                for (var i = 0; i < count; i++) {
+                    data.push(Math.round(Math.random() * 1000 + 100));
+                }
+                return data;
+            }
+    
+    
+            function generateLabels(count) {
+                var labels = [];
+                var currentDate = new Date('2024-04-06');
+                for (var i = 0; i < count; i++) {
+                // 将日期格式化为 "YYYY.MM.DD" 格式
+                labels.push(currentDate.toISOString().slice(0, 10).replace(/-/g, '.'));
+                // 更新日期，使它加一天
+                currentDate.setDate(currentDate.getDate() + 1);
+                }
+                return labels;
+            }
+    
+            // 指定图表的配置项和数据
+            var optionA = {
+                title: {
+                    text: '上证指数'  // 图表的名称
+                },
+                xAxis: {
+                    type: 'category',
+                    data: generateLabels(30)
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [3055.54,3062.06,3048.585,3040.32,3043.08,3071.07,3070.37,3069.17,3080.76,3059.29,3033.405,3029.2,3009.975,2999.625,3024.775,3063.2,3075.92,3072.095,3052.19,3046.575,3036.645,3023.91,3027.525,3035.525,3025.31,3039.72,3067.125,3062.78,3051.83,3030.295],
+                    type: 'line',
+                    label: {
+                        normal: {
+                            show: true,  // 显示标签
+                            position: 'top',  // 标签的位置在数据点的上方
+                            formatter: '{c}'  // 使用数据点的值作为标签的内容
+                        }
+                    }
+                }]
+            };
+    
+            var optionB = {
+                title: {
+                    text: 'A股指数'  // 图表的名称
+                },
+                xAxis: {
+                    type: 'category',
+                    data: generateLabels(30)
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data:[3203.1,3209.97,3195.765,3187.04,3189.915,3219.27,3218.61,3217.395,3229.635,3207.195,3180.065,3175.685,3155.545,3144.68,3171.03,3211.345,3224.67,3220.68,3199.87,3193.985,3183.52,3170.16,3173.94,3182.32,3171.615,3186.75,3215.47,3210.97,3199.535,3176.95],
+                    type: 'line',
+                    label: {
+                        normal: {
+                            show: true,  // 显示标签
+                            position: 'top',  // 标签的位置在数据点的上方
+                            formatter: '{c}'  // 使用数据点的值作为标签的内容
+                        }
+                    }
+                }]
+            };
+    
+            var optionC = {
+                title: {
+                    text: '深证指数'  // 图表的名称
+                },
+                xAxis: {
+                    type: 'category',
+                    data: generateLabels(30)
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [1737.395,1765.285,1769.725,1762.495,1764.115,1792.95,1797.35,1798.925,1807.23,1790.94,1763.02,1749.23,1725.945,1716.935,1739.785,1772.025,1783.505,1771.455,1749.235,1742.685,1733.555,1714.67,1714.355,1703.195,1663.985,1673.305,1697.02,1687.75,1677.785,1675.84],
+                    type: 'line',
+                    label: {
+                        normal: {
+                            show: true,  // 显示标签
+                            position: 'top',  // 标签的位置在数据点的上方
+                            formatter: '{c}'  // 使用数据点的值作为标签的内容
+                        }
+                    }
+                }]
+            };
+    
+            var optionD = {
+                title: {
+                    text: '沪证300'  // 图表的名称
+                },
+                xAxis: {
+                    type: 'category',
+                    data: generateLabels(30)
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [999.65,986.205,994.425,995.805,978.345,967.34,964.405,957.51,946.42,941.005,933.03,932.755,932.585,932.8,936.605,921.91,909.31,906.845,892.895,885.525,880.33,877.27,882.17,883.505,883.135,871.81,864.83,868.055,862.545,852.55],
+                    type: 'line',
+                    label: {
+                        normal: {
+                            show: true,  // 显示标签
+                            position: 'top',  // 标签的位置在数据点的上方
+                            formatter: '{c}'  // 使用数据点的值作为标签的内容
+                        }
+                    }
+                }]
+            };
+            
+            var optionE = {
+                title: {
+                    text: '最大成交量'  // 图表的名称
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ['上证指数','A股指数','深证指数','沪证300']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [461239264,460749856,565737536,183941248],
+                    type: 'bar',
+                    label: {
+                        normal: {
+                            show: true,  // 显示标签
+                            position: 'top',  // 标签的位置在数据点的上方
+                            formatter: '{c}'  // 使用数据点的值作为标签的内容
+                        }
+                    }
+                }]
+            };
+
+            var optionF = {
+                title: {
+                    text: '最大成交额'  // 图表的名称
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ['上证指数','A股指数','深证指数','沪证300']
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    data: [49455852.00,49390564.00,65238388.00,33999704.00],
+                    type: 'bar',
+                    label: {
+                        normal: {
+                            show: true,  // 显示标签
+                            position: 'top',  // 标签的位置在数据点的上方
+                            formatter: '{c}'  // 使用数据点的值作为标签的内容
+                        }
+                    }
+                }]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChartA.setOption(optionA);
+            myChartB.setOption(optionB);
+            myChartC.setOption(optionC);
+            myChartD.setOption(optionD);
+            myChartE.setOption(optionE);
+            myChartF.setOption(optionF);
+        </script>
+
+
+
+    <!-- All JavaScript files
+    ================================================== -->
+    <script src="static/assets/js/jquery.min.js"></script>
+    <script src="static/assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugins for this template -->
+    <script src="static/assets/js/jquery-plugin-collection.js"></script>
+
+    <!-- Custom script for this template -->
+    <script src="static/assets/js/script.js"></script>
+</body>
+</html>
